@@ -78,6 +78,12 @@ formulaire.addEventListener("submit", function (event) {
     } 
 });
 
+const boutonToutSupprimer = document.getElementById("clear-films");
+boutonToutSupprimer.addEventListener("click", function () {
+    films = [];
+    afficherFilms();
+});
+
 // Fonction pour afficher les films dans la liste
 function afficherFilms() {
     listeFilms.textContent = "";
@@ -133,5 +139,7 @@ function afficherFilms() {
     }
     }
 }
+
+
 
 
