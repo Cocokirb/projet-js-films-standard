@@ -10,37 +10,44 @@
 
 <body>
     <main class="app-shell">
+        <!-- En-tête -->
         <h1>Gestionnaire de films</h1>
         <p>Ajoutez des films à votre collection.</p>
 
+        <!-- Formulaire d'ajout d'un film -->
         <section class="card">
             <h2 id="add-film-title">Ajouter un film</h2>
 
             <form id="film-form" method="get" novalidate>
+                <!-- Champ du titre -->
                 <div class="form-field">
                     <label for="titre">Titre</label>
                     <input type="text" id="titre" name="titre" autocomplete="name">
                     <p class="error-message" id="titre-error" ></p>
                 </div>
 
+                <!-- Champ du réalisateur -->
                 <div class="form-field">
                     <label for="realisateur">Réalisateur</label>
                     <input type="text" id="realisateur" name="realisateur" autocomplete="name">
                     <p class="error-message" id="realisateur-error" ></p>
                 </div>
 
+                <!-- Champ de l'année de sortie -->
                 <div class="form-field">
                     <label for="annee">Année de sortie</label>
                     <input type="number" id="annee" name="annee" min="1895" step="1" inputmode="numeric">
                     <p class="error-message" id="annee-error" ></p>
                 </div>
 
+                <!-- Champ de la durée -->
                 <div class="form-field">
                     <label for="duree">Durée (minutes)</label>
                     <input type="number" id="duree" name="duree" min="1" step="1" inputmode="numeric">
                     <p class="error-message" id="duree-error" ></p>
                 </div>
 
+                <!-- Sélection du genre -->
                 <div class="form-field">
                     <label for="genre">Genre</label>
                     <select id="genre" name="genre">
@@ -55,10 +62,12 @@
                     <p class="error-message" id="genre-error" ></p>
                 </div>
 
+                <!-- Bouton d'ajout du film -->
                 <button class="button button-primary" type="submit">Ajouter le film</button>
             </form>
         </section>
 
+        <!-- Zone d'affichage de la collection -->
         <section class="card collection-card" aria-labelledby="collection-title">
             <div class="section-heading">
                 <h2 id="collection-title">Films enregistrés</h2>

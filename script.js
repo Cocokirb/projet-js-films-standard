@@ -61,9 +61,17 @@ formulaire.addEventListener("submit", function (event) {
         genreErreur.textContent = "Le genre est obligatoire.";
         formValide = false;
     }
+
+    for(film of films) {
+        if(titre.toLowerCase() === film.titre.toLowerCase() && realisateur.toLowerCase() === film.realisateur.toLowerCase()) {
+            titreErreur.textContent = "Ce film est déjà enregistré.";
+            return;
+        }
+    }
+
     if(!formValide) {
         return;
-        
+  
     }else{
         // Ajouter le film au tableau
         films.push({ id: Date.now(),
@@ -76,10 +84,12 @@ formulaire.addEventListener("submit", function (event) {
         // Réinitialiser le formulaire
         formulaire.reset();
     } 
+    
 });
 
 const boutonToutSupprimer = document.getElementById("clear-films");
 boutonToutSupprimer.addEventListener("click", function () {
+    // Vider la collection puis réafficher le message de liste vide
     films = [];
     afficherFilms();
 });
@@ -111,6 +121,7 @@ function afficherFilms() {
         btnSuppr.className = "button button-danger";
         btnSuppr.textContent = "Supprimer";
         btnSuppr.addEventListener("click", function () {
+            // Retirer uniquement le film associé à ce bouton
             films = films.filter(function (filmActuel) {
                 return filmActuel.id !== film.id;
             });
