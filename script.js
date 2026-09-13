@@ -1,6 +1,3 @@
-console.log("Le fichier JavaScript est chargé");
-
-
 const formulaire = document.getElementById("film-form");
 const listeFilms = document.getElementById("films-list");
 
@@ -75,13 +72,66 @@ formulaire.addEventListener("submit", function (event) {
             annee: annee,
             duree: duree,
             genre: genre});
+        afficherFilms();
         // Réinitialiser le formulaire
         formulaire.reset();
     } 
+});
 
-    console.log(films);
-}   
-);
+// Fonction pour afficher les films dans la liste
+function afficherFilms() {
+    listeFilms.textContent = "";
 
+    // Vérifier si le tableau de films est vide si oui afficher le message "Aucun film à afficher ""
+    if(films.length === 0) {
+        const messageAucunFilm = document.createElement("p");
+        messageAucunFilm.textContent = "Aucun film enregistré.";
+        messageAucunFilm.className = "empty-message";
+        listeFilms.appendChild(messageAucunFilm);
+        return;
+
+    }else{
+    // Parcourir le tableau de films et créer les cases pour chaque film
+    for (const film of films) {
+        // Créations des balises pour chaque inormations sur le film
+        const filmCard = document.createElement("div");
+        filmCard.className = "film-item";
+        const titreFilm = document.createElement("h2");
+        const realisateurElement = document.createElement("p");
+        const anneeDureeElement = document.createElement("p");
+        const genreElement = document.createElement("p");
+        const btnSuppr = document.createElement("button");
+        btnSuppr.type = "button";
+        btnSuppr.className = "button button-danger";
+        btnSuppr.textContent = "Supprimer";
+        btnSuppr.addEventListener("click", function () {
+            films = films.filter(function (filmActuel) {
+                return filmActuel.id !== film.id;
+            });
+
+            afficherFilms();
+        });
+
+        // Remplissage des balises avec les informations du film
+        titreFilm.textContent = film.titre;
+        realisateurElement.textContent =
+            `Réalisateur : ${film.realisateur}`; 
+
+        anneeDureeElement.textContent =
+            `${film.annee} — ${film.duree} min`;
+
+        genreElement.textContent =
+            `Genre : ${film.genre}`;
+        
+        // Ajout des balises au html
+        filmCard.appendChild(titreFilm);
+        filmCard.appendChild(realisateurElement);
+        filmCard.appendChild(anneeDureeElement);
+        filmCard.appendChild(genreElement);
+        filmCard.appendChild(btnSuppr);
+        listeFilms.appendChild(filmCard);
+    }
+    }
+}
 
 
